@@ -3,6 +3,8 @@ import math
 import numpy
 import numpy as np
 
+import sys
+
 # Take a look at https://pypi.org/project/numpy-stl/
 
 def cube_generation_by_extending_objects():
@@ -52,17 +54,22 @@ def cube_generation_by_extending_objects():
   # Write the mesh to file "cube.stl"
   cube.save('cube.stl')
 
-def cube_generation():
+def cube_generation(sizex=1, sizey=1, sizez=1):
+
+  sizex = 0.5 * sizex
+  sizey = 0.5 * sizey
+  sizez = 0.5 * sizez
+
   # Define the 8 vertices of the cube
   vertices = np.array([\
-      [-1, -1, -1],
-      [+1, -1, -1],
-      [+1, +1, -1],
-      [-1, +1, -1],
-      [-1, -1, +1],
-      [+1, -1, +1],
-      [+1, +1, +1],
-      [-1, +1, +1]])
+      [-sizex, -sizey, -sizez],
+      [+sizex, -sizey, -sizez],
+      [+sizex, +sizey, -sizez],
+      [-sizex, +sizey, -sizez],
+      [-sizex, -sizey, +sizez],
+      [+sizex, -sizey, +sizez],
+      [+sizex, +sizey, +sizez],
+      [-sizex, +sizey, +sizez]])
   # Define the 12 triangles composing the cube
   faces = np.array([\
       [0,3,1],
@@ -87,4 +94,13 @@ def cube_generation():
   # Write the mesh to file "cube.stl"
   cube.save('cube.stl')
 
-cube_generation()
+sizex = sizey = sizez = 1
+
+if len(sys.argv) > 1:
+  sizex = float(sys.argv[1])
+if len(sys.argv) > 2:
+  sizey = float(sys.argv[2])
+if len(sys.argv) > 3:
+  sizez = float(sys.argv[3])
+
+cube_generation(sizex, sizey, sizez)
