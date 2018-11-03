@@ -53,3 +53,27 @@ class MeshBuilder:
                 new_mesh.vectors[i][j] = np.transpose(self.vertices[f[j]].value())
 
         return new_mesh
+
+    def join(self, mesh_builder):
+        new_mesh_builder = MeshBuilder()
+
+        total_vertices_b1 = len(self.vertices)
+
+        for v in self.vertices:
+            new_mesh_builder.vertices.append(v)
+        for v in mesh_builder.vertices:
+            new_mesh_builder.vertices.append(v)
+
+        for t in self.triangles:
+            new_mesh_builder.triangles.append(t)
+        for t in mesh_builder.triangles:
+
+            t[0] = t[0] + total_vertices_b1
+            t[1] = t[1] + total_vertices_b1
+            t[2] = t[2] + total_vertices_b1
+
+            # print(str(t))
+
+            new_mesh_builder.triangles.append(t)
+
+        return new_mesh_builder

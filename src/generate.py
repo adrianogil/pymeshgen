@@ -14,5 +14,13 @@ def generate_simple_quad():
 
 
 circle_mesh = CircleMesh()
+circle_mesh.direction1 = Vector3.forward()
 mesh_builder = circle_mesh.create()
+
+circle_mesh.radius = 3
+mesh_builder2 = circle_mesh.create()
+mesh_builder2.translate(Vector3.up().multiply(2))
+
+mesh_builder = mesh_builder.join(mesh_builder2)
+
 mesh_builder.create_mesh().save('proceduralmesh.stl')
