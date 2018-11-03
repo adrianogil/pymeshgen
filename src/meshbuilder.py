@@ -21,6 +21,10 @@ class MeshBuilder:
         self.add_triangle(initial_index+0, initial_index+3, initial_index+1)
         self.add_triangle(initial_index+1, initial_index+2, initial_index+3)
 
+    def add_vertice(self, v, groups=None):
+        # print('MeshBuilder.add_vertice - v - ' + str(v))
+        self.vertices.append(v)
+
     def add_triangle(self, t0, t1, t2):
         self.triangles.append([t0,t1,t2])
 
@@ -44,7 +48,7 @@ class MeshBuilder:
         new_mesh = mesh.Mesh(np.zeros(len(self.triangles), dtype=mesh.Mesh.dtype))
         for i, f in enumerate(self.triangles):
             for j in range(3):
-                print(str(i))
+                # print(str(i))
                 # print(str(self.vertices[f[j]].value()))
                 new_mesh.vectors[i][j] = np.transpose(self.vertices[f[j]].value())
 
