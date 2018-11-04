@@ -21,9 +21,9 @@ class CylinderMesh:
 
         direction3 = self.direction1.cross_product(self.direction2).normalized()
 
-        up_circle = circle_mesh.create().translate(direction3.multiply(0.5 * self.height))
+        up_circle = circle_mesh.create().translate(direction3.multiply(self.height))
 
-        down_circle = circle_mesh.create().translate(direction3.multiply(-0.5 * self.height))
+        down_circle = circle_mesh.create()
 
         meshUnion = MeshUnion();
         meshUnion.size = self.height;

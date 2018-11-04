@@ -7,31 +7,38 @@ class CastleTowerMesh:
     def __init__(self):
         self.radius = 0.5
         self.height = 10.0
+        self.tower_pieces = 4
+        self.total_perimeter_vertices = 30
 
     def create(self):
         cylinder = CylinderMesh();
 
         cylinder.radius = self.radius;
-        cylinder.direction1 = Vector3(1.0, 0.0, 0.0);
-        cylinder.direction2 = Vector3(0.0, 0.0, 1.0);
-        cylinder.total_perimeter_vertices = 30;
+        cylinder.direction1 = Vector3.right();
+        cylinder.direction2 = Vector3.forward();
+        cylinder.total_perimeter_vertices = self.total_perimeter_vertices
         cylinder.height = 0.4*self.height;
 
-        meshBuilder = cylinder.create().translate(Vector3.up().multiply(0.2*self.height));
+        meshBuilder = cylinder.create();
 
-        cylinder.radius = 0.7*self.radius;
-        cylinder.height = 0.2*self.height;
+        last_height = 0
+        last_radius = self.radius
+        for t in range(0, self.tower_pieces):
+            last_radius = 0.87*last_radius
+            cylinder.radius = last_radius
+            cylinder.height = 0.6*self.height/self.tower_pieces
+            last_height = last_height + cylinder.height
 
-        meshBuilder = cylinder.create() \
-            .translate(Vector3.up().multiply(0.5*self.height)) \
-            .join(meshBuilder);
+            meshBuilder = cylinder.create() \
+                .translate(Vector3(0.0, last_height, 0.0)) \
+                .join(meshBuilder);
 
         cone = ConeMesh();
         cone.radius = 0.9 * self.radius;
-        cone.height = 0.4 * self.height;
+        cone.height = 0.2 * self.height;
         cone.total_vertical_segments = 1;
         coneMeshBuilder = cone.create() \
-                    .translate(Vector3.up().multiply(self.height - 0.5*cone.height));
+                    .translate(Vector3.up().multiply(0.6*self.height));
 
         meshBuilder = meshBuilder.join(coneMeshBuilder);
 

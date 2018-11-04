@@ -15,10 +15,11 @@ class MeshBuilder:
 
         if groups is not None:
             for g in groups:
-                if g in self.vertices_groups:
-                    self.vertices_groups[g].append(v)
-                else:
-                    self.vertices_groups[g] = [v]
+                if g != "default":
+                    if g in self.vertices_groups:
+                        self.vertices_groups[g].append(v)
+                    else:
+                        self.vertices_groups[g] = [v]
         self.vertices_groups['default'].append(v)
 
 

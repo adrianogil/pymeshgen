@@ -25,10 +25,10 @@ class ConeMesh:
         if self.direction3.minus(Vector3.up()).magnitude() < 0.001:
             self.direction3 = self.direction1.cross_product(self.direction2).normalized();
 
-        baseCircle = circleMesh.create().translate(self.direction3.multiply(-0.5 * self.height));
+        baseCircle = circleMesh.create();
 
         top = MeshBuilder();
-        top.add_vertice(Vector3(0,-0.5*self.height,0).add(self.direction3.multiply(self.height)), ["border"]);
+        top.add_vertice(Vector3(0,self.height,0).add(self.direction3.multiply(self.height)), ["border"]);
 
         meshUnion = MeshUnion();
         meshUnion.size = self.height;

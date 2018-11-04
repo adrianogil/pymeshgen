@@ -65,6 +65,7 @@ class Vector3:
             return new_v
         else:
             if self.magnitude() == 0:
+                print('Vector3 - Error - magnitude zero')
                 return Vector3.zero()
             else:
                 self.multiply(1.0/self.magnitude(), False)

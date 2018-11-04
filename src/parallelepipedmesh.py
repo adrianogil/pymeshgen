@@ -4,6 +4,8 @@ from vector import Vector3
 from meshbuilder import MeshBuilder
 from quadmesh import QuadMesh
 
+from meshunion import MeshUnion
+
 class ParallelepipedMesh:
     def __init__(self):
         self.size1 = 3
@@ -23,20 +25,22 @@ class ParallelepipedMesh:
         quad = QuadMesh()
         quad.origin = self.origin
 
+        quad.size1 = self.size1
+        quad.size2 = self.size2
         quad.direction1 = self.direction1
         quad.direction2 = self.direction2
         quad.segments_dir1 = self.segments_dir1
         quad.segments_dir2 = self.segments_dir2
 
-        mesh_builder = quad.create()
+        up_quad = quad.create().translate(self.direction3.multiply(0.5 * self.size3))
+        down_quad = quad.create().translate(self.direction3.multiply(-0.5 * self.size3))
 
-        quad.direction1 = self.direction1
-        quad.direction2 = self.direction3
-        quad.segments_dir1 = self.segments_dir1
-        quad.segments_dir2 = self.segments_dir3
+        meshUnion = MeshUnion();
+        meshUnion.size = self.size3;
+        meshUnion.total_segments = self.segments_dir3;
 
-        mesh_builder = quad.create().join(mesh_builder)
+        tunnel = meshUnion.create(up_quad.get_submesh(["border"]), down_quad.get_submesh(["border"]));
 
-        return mesh_builder
+        return up_quad.join(down_quad).join(tunnel)
 
     
