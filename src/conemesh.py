@@ -34,6 +34,6 @@ class ConeMesh:
         meshUnion.size = self.height;
         meshUnion.total_segments = self.total_vertical_segments;
 
-        cone = meshUnion.create(top, baseCircle);
+        cone = meshUnion.create(top, baseCircle.get_submesh(["border"]));
 
         return cone.join(baseCircle);

@@ -29,6 +29,6 @@ class CylinderMesh:
         meshUnion.size = self.height;
         meshUnion.total_segments = self.total_vertical_segments;
 
-        tunnel = meshUnion.create(up_circle, down_circle);
+        tunnel = meshUnion.create(up_circle.get_submesh(["border"]), down_circle.get_submesh(["border"]));
 
         return up_circle.join(down_circle).join(tunnel)

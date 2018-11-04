@@ -30,10 +30,25 @@ class QuadMesh:
                 v1 = self.direction1.multiply((x+1)*size_dir1)
                 v2 = self.direction2.multiply((y+1)*size_dir2)
 
-                mesh_builder.add_vertice(initial_point)
-                mesh_builder.add_vertice(initial_point.add(v1))
-                mesh_builder.add_vertice(initial_point.add(v1).add(v2))
-                mesh_builder.add_vertice(initial_point.add(v2))
+                if x == 0 or y == 0:
+                    mesh_builder.add_vertice(initial_point, ['border'])
+                else:
+                    mesh_builder.add_vertice(initial_point)
+
+                if x == self.segments_dir1-1:
+                    mesh_builder.add_vertice(initial_point.add(v1), ['border'])
+                else:
+                    mesh_builder.add_vertice(initial_point.add(v1))
+
+                if x == self.segments_dir1-1 or y == self.segments_dir2-1:
+                    mesh_builder.add_vertice(initial_point.add(v1).add(v2), ['border'])
+                else:
+                    mesh_builder.add_vertice(initial_point.add(v1).add(v2))
+
+                if y == self.segments_dir2-1:
+                    mesh_builder.add_vertice(initial_point.add(v2), ['border'])
+                else:
+                    mesh_builder.add_vertice(initial_point.add(v2))
 
                 mesh_builder.add_triangle(initial_index+0, initial_index+1, initial_index+3)
                 mesh_builder.add_triangle(initial_index+1, initial_index+3, initial_index+2)

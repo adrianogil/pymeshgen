@@ -92,3 +92,32 @@ class MeshBuilder:
             new_mesh_builder.triangles.append(t)
 
         return new_mesh_builder
+
+    def get_submesh(self, groups):
+        new_mesh_builder = MeshBuilder()
+
+        new_vertices = []
+        vertices_index = []
+
+        for g in groups:
+            if g in self.vertices_groups:
+                for v in self.vertices_groups[g]:
+                    new_vertices.append(v)
+                    for i in range(0, len(self.vertices)):
+                        if v.minus(self.vertices[i]).magnitude() < 0.0001:
+                            vertices_index.append(i)
+                            break
+
+        new_triangles = []
+        for t in self.triangles:
+            if t[0] in vertices_index and \
+               t[1] in vertices_index and \
+               t[2] in vertices_index:
+               new_triangles.append(t)
+
+        new_mesh_builder.vertices = new_vertices
+        new_mesh_builder.triangles = new_triangles
+
+        return new_mesh_builder
+
+

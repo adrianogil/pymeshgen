@@ -10,27 +10,27 @@ class MeshUnion:
 
         segment_size = self.size / self.total_segments
 
-        if len(meshbuilder1.get_vertices("border")) == len(meshbuilder2.get_vertices("border")):
+        if len(meshbuilder1.vertices) == len(meshbuilder2.vertices):
             # print("GilLog - MeshUnion::Create - round " + round + " 1 ")
 
-            total_vertices = len(meshbuilder1.get_vertices("border"))
+            total_vertices = len(meshbuilder1.vertices)
 
             # print("GilLog - MeshUnion::Create - round " + is_round + "  - total_vertices " + \
                 # total_vertices + "  - segment_size " + segment_size + " ")
 
             for i in range(0, total_vertices):
-                # print("GilLog - MeshUnion::Create - meshbuilder1 " + meshbuilder1 + " meshbuilder2 " + meshbuilder2 + " round " + round + "  - meshbuilder1.get_vertices(border)[i] " + meshbuilder1.get_vertices("border")[i] + "  - meshbuilder2.get_vertices(border)[i] " + meshbuilder2.get_vertices("border")[i] + " ");
+                # print("GilLog - MeshUnion::Create - meshbuilder1 " + meshbuilder1 + " meshbuilder2 " + meshbuilder2 + " round " + round + "  - meshbuilder1.get_vertices(border)[i] " + meshbuilder1.vertices[i] + "  - meshbuilder2.get_vertices(border)[i] " + meshbuilder2.vertices[i] + " ");
                 
-                print("meshbuilder1 - vertice " + str(i) + ": " + str(meshbuilder1.get_vertices("border")[i]))
-                print("meshbuilder2 - vertice " + str(i) + ": " + str(meshbuilder2.get_vertices("border")[i]))
+                # print("meshbuilder1 - vertice " + str(i) + ": " + str(meshbuilder1.vertices[i]))
+                # print("meshbuilder2 - vertice " + str(i) + ": " + str(meshbuilder2.vertices[i]))
 
-                diff_vector = meshbuilder1.get_vertices("border")[i].minus(meshbuilder2.get_vertices("border")[i]).normalized()
+                diff_vector = meshbuilder1.vertices[i].minus(meshbuilder2.vertices[i]).normalized()
 
-                print("diff_vector: " + str(diff_vector))
+                # print("diff_vector: " + str(diff_vector))
 
                 for s in range(0, self.total_segments):
                     mesh_builder.add_vertice( \
-                        meshbuilder1.get_vertices("border")[i] \
+                        meshbuilder1.vertices[i] \
                             .add(diff_vector.multiply(s * segment_size)) \
                         )
 
@@ -47,17 +47,17 @@ class MeshUnion:
                             next_index*(self.total_segments+1)+s
                             )
 
-                mesh_builder.add_vertice(meshbuilder2.get_vertices("border")[i])
+                mesh_builder.add_vertice(meshbuilder2.vertices[i])
         else:
             tmp = None;
 
-            if len(meshbuilder1.get_vertices("border")) > len(meshbuilder2.get_vertices("border")):
+            if len(meshbuilder1.vertices) > len(meshbuilder2.vertices):
                 tmp = meshbuilder1;
                 meshbuilder1 = meshbuilder2;
                 meshbuilder2 = tmp;
 
-            total_vertices1 = len(meshbuilder1.get_vertices("border"));
-            total_vertices2 = len(meshbuilder2.get_vertices("border"));
+            total_vertices1 = len(meshbuilder1.vertices);
+            total_vertices2 = len(meshbuilder2.vertices);
 
             vertices2_for_each_v1 = total_vertices2 / total_vertices1;
 
@@ -68,19 +68,19 @@ class MeshUnion:
             for i in range(0, total_vertices1):
                 v1_index = len(mesh_builder.vertices)
                 mesh_builder.add_vertice(\
-                            meshbuilder1.get_vertices("border")[i]\
+                            meshbuilder1.vertices[i]\
                             )
 
                 v2 = current_vertice2
                 while (i == total_vertices1-1 and v2 < total_vertices2) or v2 < current_vertice2 + vertices2_for_each_v1:
                     # Debug.Log("GilLog - MeshUnion::Create - meshbuilder1 " + meshbuilder1 + " meshbuilder2 " + meshbuilder2 + " round " + round + "  - v2 " + v2 + " ");
-                    diff_vector = meshbuilder1.get_vertices("border")[i]\
-                        .minus(meshbuilder2.get_vertices("border")[v2]).normalized()
+                    diff_vector = meshbuilder1.vertices[i]\
+                        .minus(meshbuilder2.vertices[v2]).normalized()
 
                     for s in range(0, self.total_segments):
                         if s > 0:
                             mesh_builder.add_vertice(\
-                                meshbuilder1.get_vertices("border")[i]\
+                                meshbuilder1.vertices[i]\
                                 .add(diff_vector.multiply(s * segment_size))\
                             );
 
@@ -92,7 +92,7 @@ class MeshUnion:
                                 v1_index + v2*self.total_segments + s + 2
                                 );
 
-                    mesh_builder.add_vertice(meshbuilder2.get_vertices("border")[v2]);
+                    mesh_builder.add_vertice(meshbuilder2.vertices[v2]);
 
                     v2 = v2 + 1
 

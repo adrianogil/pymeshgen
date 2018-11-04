@@ -6,6 +6,8 @@ from cylindermesh import CylinderMesh
 from conemesh import ConeMesh
 from quadmesh import QuadMesh
 
+from parallelepipedmesh import ParallelepipedMesh
+
 from castletowermesh import CastleTowerMesh
 
 mesh_filename = 'proceduralmesh.stl'
@@ -16,6 +18,14 @@ def generate_simple_quad():
     quad.direction2 = Vector3(4.5, 2.3, 0.0)
 
     quad.create().create_mesh().save(mesh_filename)
+
+def generate_parallepiped():
+    mesh = ParallelepipedMesh()
+    mesh.direction1 = Vector3(0.0,1.3,4.5)
+    mesh.direction2 = Vector3(4.5, 2.3, 0.0)
+    mesh.direction3 = mesh.direction1.cross_product(mesh.direction2)
+
+    mesh.create().create_mesh().save(mesh_filename)
 
 def generate_circles():
     circle_mesh = CircleMesh()
@@ -42,4 +52,4 @@ def generate_castle():
     CastleTowerMesh().create().create_mesh().save(mesh_filename)
 
 # generate_castle()
-generate_simple_quad()
+generate_parallepiped()
