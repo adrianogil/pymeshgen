@@ -4,18 +4,18 @@ from vector import Vector3
 from circlemesh import CircleMesh
 from cylindermesh import CylinderMesh
 from conemesh import ConeMesh
+from quadmesh import QuadMesh
 
 from castletowermesh import CastleTowerMesh
 
 mesh_filename = 'proceduralmesh.stl'
 
 def generate_simple_quad():
-    mesh_builder = MeshBuilder()
-    mesh_builder.add_quad(Vector3(0.0,1.3,4.5), Vector3(4.5, 2.3, 0.0))
-    quad =  mesh_builder.create_mesh()
+    quad = QuadMesh()
+    quad.direction1 = Vector3(0.0,1.3,4.5)
+    quad.direction2 = Vector3(4.5, 2.3, 0.0)
 
-    quad.save(mesh_filename)
-
+    quad.create().create_mesh().save(mesh_filename)
 
 def generate_circles():
     circle_mesh = CircleMesh()
@@ -41,4 +41,5 @@ def generate_cone():
 def generate_castle():
     CastleTowerMesh().create().create_mesh().save(mesh_filename)
 
-generate_castle()
+# generate_castle()
+generate_simple_quad()

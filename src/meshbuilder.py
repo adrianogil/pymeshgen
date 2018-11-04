@@ -9,19 +9,6 @@ class MeshBuilder:
         self.triangles = []
         self.vertices_groups = {'default':[]}
 
-    def add_quad(self, v1, v2):
-        initial_index = len(self.vertices)
-
-        self.vertices.append(Vector3.zero())
-        self.vertices.append(v1)
-        self.vertices.append(v1.add(v2))
-        self.vertices.append(v2)
-
-        self.add_triangle(initial_index+0, initial_index+1, initial_index+3)
-        self.add_triangle(initial_index+1, initial_index+3, initial_index+2)
-        self.add_triangle(initial_index+0, initial_index+3, initial_index+1)
-        self.add_triangle(initial_index+1, initial_index+2, initial_index+3)
-
     def add_vertice(self, v, groups=None):
         # print('MeshBuilder.add_vertice - v - ' + str(v))
         self.vertices.append(v)
