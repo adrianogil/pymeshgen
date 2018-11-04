@@ -5,6 +5,8 @@ from circlemesh import CircleMesh
 from cylindermesh import CylinderMesh
 from conemesh import ConeMesh
 
+from castletowermesh import CastleTowerMesh
+
 mesh_filename = 'proceduralmesh.stl'
 
 def generate_simple_quad():
@@ -36,4 +38,7 @@ def generate_cylinder():
 def generate_cone():
     ConeMesh().create().create_mesh().save(mesh_filename)
 
-generate_cone()
+def generate_castle():
+    CastleTowerMesh().create().create_mesh().save(mesh_filename)
+
+generate_castle()
