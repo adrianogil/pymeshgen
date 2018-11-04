@@ -3,6 +3,7 @@ from vector import Vector3
 
 from circlemesh import CircleMesh
 from cylindermesh import CylinderMesh
+from conemesh import ConeMesh
 
 mesh_filename = 'proceduralmesh.stl'
 
@@ -32,5 +33,7 @@ def generate_cylinder():
     mesh_builder = cylinder_mesh.create()
     mesh_builder.create_mesh().save(mesh_filename)
 
+def generate_cone():
+    ConeMesh().create().create_mesh().save(mesh_filename)
 
-generate_cylinder()
+generate_cone()
