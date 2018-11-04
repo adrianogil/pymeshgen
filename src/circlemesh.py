@@ -50,7 +50,7 @@ class CircleMesh:
             point = point.add(direction2.multiply(radius * np.sin(radius_amount) ));
             builder.add_vertice(point, ["border"]);
 
-        builder.add_vertice(Vector3.zero());
+        builder.add_vertice(Vector3.zero(), ["center"]);
 
         v1 = v2 = 0
 

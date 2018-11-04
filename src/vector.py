@@ -64,8 +64,11 @@ class Vector3:
             new_v.normalized(False)
             return new_v
         else:
-            self.multiply(1.0/self.magnitude(), False)
-            return self
+            if self.magnitude() == 0:
+                return Vector3.zero()
+            else:
+                self.multiply(1.0/self.magnitude(), False)
+                return self
 
     def dot_product(self, v):
         dot_value = self.x*v.x + self.y*v.y + self.z*v.z
