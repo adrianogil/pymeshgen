@@ -9,7 +9,7 @@ from quadmesh import QuadMesh
 from parallelepipedmesh import ParallelepipedMesh
 
 from castletowermesh import CastleTowerMesh
-from maincastlemesh import MainCastleMesh
+from castlemesh import CastleMesh
 
 mesh_filename = 'proceduralmesh.stl'
 
@@ -53,6 +53,6 @@ def generate_castle_tower():
     CastleTowerMesh().create().create_mesh().save(mesh_filename)
 
 def generate_castle():
-    MainCastleMesh().create().create_mesh().save(mesh_filename)
+    CastleMesh().create().create_mesh().save(mesh_filename)
 
 generate_castle()
