@@ -1,9 +1,9 @@
-from vector import Vector3
+from meshgen.vector import Vector3
 
-from meshbuilder import MeshBuilder
-from circlemesh import CircleMesh
+from meshgen.meshbuilder import MeshBuilder
+from meshgen.circlemesh import CircleMesh
 
-from meshunion import MeshUnion
+from meshgen.meshunion import MeshUnion
 
 class ConeMesh:
     def __init__(self):

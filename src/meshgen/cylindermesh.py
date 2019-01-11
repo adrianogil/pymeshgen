@@ -1,7 +1,7 @@
-from meshunion import MeshUnion
-from circlemesh import CircleMesh
+from meshgen.meshunion import MeshUnion
+from meshgen.circlemesh import CircleMesh
 
-from vector import Vector3
+from meshgen.vector import Vector3
 
 class CylinderMesh:
     def __init__(self):

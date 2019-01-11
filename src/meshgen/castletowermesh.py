@@ -1,7 +1,7 @@
-from vector import Vector3
+from meshgen.vector import Vector3
 
-from cylindermesh import CylinderMesh
-from conemesh import ConeMesh 
+from meshgen.cylindermesh import CylinderMesh
+from meshgen.conemesh import ConeMesh 
 
 class CastleTowerMesh:
     def __init__(self):

@@ -1,7 +1,7 @@
-from maincastlemesh import MainCastleMesh
-from castlewallmesh import CastleWallMesh
+from meshgen.maincastlemesh import MainCastleMesh
+from meshgen.castlewallmesh import CastleWallMesh
 
-from quadmesh import QuadMesh
+from meshgen.quadmesh import QuadMesh
 
 class CastleMesh:
     def __init__(self):

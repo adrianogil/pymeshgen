@@ -1,5 +1,5 @@
 
-from castletowermesh import CastleTowerMesh
+from meshgen.castletowermesh import CastleTowerMesh
 
 class CastleWallMesh:
     def __init__(self):

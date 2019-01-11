@@ -1,5 +1,5 @@
-from vector import Vector3
-from meshbuilder import MeshBuilder
+from meshgen.vector import Vector3
+from meshgen.meshbuilder import MeshBuilder
 
 import numpy as np
 

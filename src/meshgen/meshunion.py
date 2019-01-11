@@ -1,4 +1,4 @@
-from meshbuilder import MeshBuilder
+from meshgen.meshbuilder import MeshBuilder
 
 class MeshUnion:
     def __init__(self):

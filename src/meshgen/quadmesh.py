@@ -1,7 +1,7 @@
 
-from vector import Vector3
+from meshgen.vector import Vector3
 
-from meshbuilder import MeshBuilder
+from meshgen.meshbuilder import MeshBuilder
 
 class QuadMesh:
     def __init__(self):

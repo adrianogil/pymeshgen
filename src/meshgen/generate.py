@@ -1,15 +1,15 @@
-from meshbuilder import MeshBuilder
-from vector import Vector3
+from meshgen.meshbuilder import MeshBuilder
+from meshgen.vector import Vector3
 
-from circlemesh import CircleMesh
-from cylindermesh import CylinderMesh
-from conemesh import ConeMesh
-from quadmesh import QuadMesh
+from meshgen.circlemesh import CircleMesh
+from meshgen.cylindermesh import CylinderMesh
+from meshgen.conemesh import ConeMesh
+from meshgen.quadmesh import QuadMesh
 
-from parallelepipedmesh import ParallelepipedMesh
+from meshgen.parallelepipedmesh import ParallelepipedMesh
 
-from castletowermesh import CastleTowerMesh
-from castlemesh import CastleMesh
+from meshgen.castletowermesh import CastleTowerMesh
+from meshgen.castlemesh import CastleMesh
 
 mesh_filename = 'proceduralmesh.stl'
 

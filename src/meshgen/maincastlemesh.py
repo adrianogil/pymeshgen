@@ -1,7 +1,7 @@
-from parallelepipedmesh import ParallelepipedMesh
-from castletowermesh import CastleTowerMesh
+from meshgen.parallelepipedmesh import ParallelepipedMesh
+from meshgen.castletowermesh import CastleTowerMesh
 
-from vector import Vector3
+from meshgen.vector import Vector3
 
 class MainCastleMesh:
     def __init__(self):

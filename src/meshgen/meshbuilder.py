@@ -1,5 +1,5 @@
 from stl import mesh
-from vector import Vector3
+from meshgen.vector import Vector3
 
 import numpy as np
 

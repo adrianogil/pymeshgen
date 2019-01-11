@@ -1,10 +1,10 @@
 
-from vector import Vector3
+from meshgen.vector import Vector3
 
-from meshbuilder import MeshBuilder
-from quadmesh import QuadMesh
+from meshgen.meshbuilder import MeshBuilder
+from meshgen.quadmesh import QuadMesh
 
-from meshunion import MeshUnion
+from meshgen.meshunion import MeshUnion
 
 class ParallelepipedMesh:
     def __init__(self):
