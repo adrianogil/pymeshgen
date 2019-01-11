@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils import is_float
+from meshgen.utils import is_float
 
 class Vector3:
     def __init__(self, x, y, z):
