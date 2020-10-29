@@ -9,6 +9,14 @@ class MeshBuilder:
         self.triangles = []
         self.vertices_groups = {'default':[]}
 
+    def clone(self):
+        new_mesh_builder =  MeshBuilder()
+
+        new_mesh_builder.vertices = self.vertices.copy()
+        new_mesh_builder.triangles = self.triangles.copy()
+
+        return new_mesh_builder
+
     def add_vertice(self, v, groups=None):
         # print('MeshBuilder.add_vertice - v - ' + str(v))
         self.vertices.append(v)
@@ -42,7 +50,7 @@ class MeshBuilder:
                 new_vertices.append(vg.multiply(fscale))
             self.vertices_groups[g] = new_vertices
 
-        
+
 
     def translate(self, tscale):
         new_vertices = []

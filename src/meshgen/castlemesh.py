@@ -3,6 +3,7 @@ from meshgen.castlewallmesh import CastleWallMesh
 
 from meshgen.quadmesh import QuadMesh
 
+
 class CastleMesh:
     def __init__(self):
         self.total_size1 = 15
@@ -23,10 +24,8 @@ class CastleMesh:
         quad.size1 = self.space_to_wall * self.total_size1
         quad.size2 = self.space_to_wall * self.total_size2
 
-        # wall = CastleWallMesh()
+        wall = CastleWallMesh()
         # wall.boundary = quad.create().get_submesh(["border"])
-
-        # mesh_builder = wall.create().join(mesh_builder)
+        mesh_builder = wall.create().join(mesh_builder)
 
         return mesh_builder
-
